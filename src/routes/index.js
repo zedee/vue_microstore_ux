@@ -14,7 +14,19 @@ export default [
 
     // If the user needs to be authenticated to view this page
     meta: {
-      auth: true,
+      auth: false,
+    },
+  },
+
+  // Products List
+  {
+    path: '/products',
+    name: 'products.index',
+    component: () => import('@/views/Products/Index.vue'),
+
+    // If the user needs to be authenticated to view this page
+    meta: {
+      auth: false,
     },
   },
 
