@@ -3,7 +3,7 @@
     <v-lazy-image class="img-card-top" :src="image_url" :alt="name" />
     <div class="card-body">
       <h5 class="card-title">{{ name }}</h5>
-      <p class="card-text">{{ description }}</p>
+      <p class="card-text d-none d-lg-block">{{ description }}</p>
       <a href="#" class="btn btn-primary" :data-product-id="id">+ Add</a>
     </div>
   </div>
@@ -42,8 +42,14 @@
       },
       favorite: {
         default: false,
-        type: Number
+        type: Boolean
       }
     }
   };
 </script>
+
+<style scoped>
+  .img-card-top {
+    max-height: 200px;
+  }
+</style>

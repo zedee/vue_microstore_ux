@@ -4,14 +4,14 @@
       <span slot="header"><h1>Product list</h1></span>
       <div slot="body">
         <div class="row row-cols-2 row-cols-md-4">
-          <div class="col mb-4" v-for="product in productList">
+          <div class="col-12 col-md-3 mb-4" v-for="product in productList">
             <product-item :id="product.id"
                           :image_url="product.image_url"
                           :price="product.price"
                           :name="product.productName"
                           :description="product.productDescription"
                           :stock="product.stock"
-                          :favorite="product.favorite"
+                          :favorite="product.favorite === true"
             ></product-item>
           </div>
         </div>

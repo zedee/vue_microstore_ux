@@ -42,6 +42,15 @@
             </a>
           </router-link>
         </ul>
+        <span class="navbar-text mr-3">
+          <a
+            class="btn btn-secondary"
+            href="#"
+            @click.prevent="showCart"
+          >
+            <i class="fa fa-shopping-cart"/>
+          </a>
+        </span>
         <span class="navbar-text">
           <a
             class="btn btn-secondary"
@@ -103,6 +112,9 @@ export default {
      */
     logout() {
       this.$store.dispatch('auth/logout');
+    },
+    showCart() {
+      //TODO: Show cart template
     },
 
     /**
