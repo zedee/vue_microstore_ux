@@ -22,6 +22,8 @@ import './plugins/vuex-router-sync';
 import './plugins/bootstrap';
 import './plugins/font-awesome';
 import './plugins/register-service-worker';
+import './plugins/v-lazy-image';
+
 
 /* ============
  * Styling
