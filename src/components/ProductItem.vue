@@ -45,12 +45,12 @@
 
   export default {
     /**
-     * The name of the component.
+     * ProductItem component.
      */
     name: 'ProductItem',
     props: {
       id: {
-        default: '0',
+        default: '',
         type: String
       },
       image_url: {

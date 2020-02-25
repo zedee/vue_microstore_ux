@@ -9,7 +9,7 @@
       </li>
       <li class="page-item">
         <a class="page-link" href="#">
-          {{ currentPage }} / {{ totalPages }}
+          Page: {{ currentPage }} / {{ totalPages }}
         </a>
       </li>
       <li class="page-item">

@@ -27,8 +27,13 @@ export const setProductQuantity = ({ commit }) => {
   commit(types.SET_PRODUCT_QUANTITY);
 };
 
+export const toggleCartVisibility = ({ commit }) => {
+  commit(types.TOGGLE_CART_VISIBILITY);
+};
+
 export default {
   addProduct,
   removeProduct,
   setProductQuantity,
+  toggleCartVisibility
 };

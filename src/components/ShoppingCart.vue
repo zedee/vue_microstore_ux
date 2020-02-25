@@ -12,13 +12,13 @@
 <script>
   export default {
     name: 'ShoppingCart',
-    data: () => ({
-      isPanelOpen: false
-    }),
     methods: {
       closeSidebarPanel() {
-        this.isPanelOpen = false
+        this.$store.dispatch('cart/toggleCartVisibility');
       }
+    },
+    computed: {
+      isPanelOpen() { return this.$store.state.cart.isVisible }
     }
   }
 </script>

@@ -12,5 +12,6 @@ export default {
     name: '',
     price: 0,
     quantity: 0
-  }
+  },
+  isVisible: false
 };

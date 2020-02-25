@@ -113,7 +113,7 @@ export default {
    */
   data() {
     return {
-      menuCollapsed: false,
+      menuCollapsed: false
     };
   },
 
@@ -128,7 +128,7 @@ export default {
       this.$store.dispatch('auth/logout');
     },
     showCart() {
-      //TODO: Show cart template
+      this.$store.dispatch('cart/toggleCartVisibility');
     },
 
     /**

@@ -18,9 +18,11 @@
             ></product-item>
           </div>
         </div>
-        <aside>
-          <shopping-cart></shopping-cart>
-        </aside>
+        <div slot="shopping-cart">
+          <aside>
+            <shopping-cart></shopping-cart>
+          </aside>
+        </div>
       </div>
       <div slot="footer"></div>
     </div>
@@ -56,6 +58,9 @@
       ShoppingCart,
       VLayout,
       VCard,
+    },
+    data() {
+      return {}
     },
     mounted() {
       if (!this.$store.state.products.currentPageList.length) {
