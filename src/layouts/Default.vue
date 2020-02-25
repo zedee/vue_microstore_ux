@@ -5,7 +5,7 @@
         :to="{ name: 'home.index' }"
         class="navbar-brand"
       >
-        Vue 2 Boilerplate
+        Microstore Demo
       </router-link>
 
       <button
@@ -41,6 +41,16 @@
               Account
             </a>
           </router-link>
+          <router-link
+            :to="{ name: 'products.index' }"
+            active-class="active"
+            class="nav-item"
+            tag="li"
+          >
+            <a class="nav-link">
+              Products
+            </a>
+          </router-link>
         </ul>
         <span class="navbar-text mr-3">
           <a
@@ -49,6 +59,10 @@
             @click.prevent="showCart"
           >
             <i class="fa fa-shopping-cart"/>
+            <template v-if="itemsInCart > 0">
+              &nbsp; Products <span class="badge badge-light">{{ itemsInCart }}</span>
+              <span class="sr-only"> products in cart</span>
+            </template>
           </a>
         </span>
         <span class="navbar-text">
@@ -124,5 +138,8 @@ export default {
       this.menuCollapsed = !this.menuCollapsed;
     },
   },
+  computed: {
+    itemsInCart() { return this.$store.getters['cart/itemsInCart'] }
+  }
 };
 </script>

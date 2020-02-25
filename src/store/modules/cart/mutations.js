@@ -1,9 +1,9 @@
 /* ============
- * Mutations for the auth module
+ * Mutations for the cart module
  * ============
  *
  * The mutations that are available on the
- * account module.
+ * cart module.
  */
 
 import { ADD_PRODUCT } from './mutation-types';

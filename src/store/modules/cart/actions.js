@@ -1,9 +1,9 @@
 /* ============
- * Actions for the product module
+ * Actions for the cart module
  * ============
  *
  * The actions that are available on the
- * product module.
+ * cart module.
  */
 
 import * as types from './mutation-types';

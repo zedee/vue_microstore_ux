@@ -2,7 +2,7 @@
  * State of the cart module
  * ============
  *
- * The initial state of the product module.
+ * The initial state of the cart module.
  */
 
 export default {

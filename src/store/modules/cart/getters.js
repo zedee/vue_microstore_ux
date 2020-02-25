@@ -1,9 +1,11 @@
 /* ============
- * Getters for the auth module
+ * Getters for the cart module
  * ============
  *
  * The getters that are available on the
- * auth module.
+ * cart module.
  */
 
-export default {};
+export default {
+  itemsInCart: (state) => state.cartContent.length
+};

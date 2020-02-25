@@ -1,9 +1,9 @@
 /* ============
- * Mutation types for the product module
+ * Mutation types for the cart module
  * ============
  *
  * The mutation types that are available
- * on the product module.
+ * on the cart module.
  */
 
 export const ADD_PRODUCT = 'ADD_PRODUCT';

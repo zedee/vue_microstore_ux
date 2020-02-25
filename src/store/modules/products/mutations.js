@@ -1,9 +1,9 @@
 /* ============
- * Mutations for the auth module
+ * Mutations for the product module
  * ============
  *
  * The mutations that are available on the
- * account module.
+ * product module.
  */
 
 import { LIST } from './mutation-types';

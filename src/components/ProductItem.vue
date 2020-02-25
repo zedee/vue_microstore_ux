@@ -77,6 +77,9 @@
         //As we cannot add a product from other page, iterate only on current one.
         this.$store.dispatch('cart/addProduct',
           _.find(this.$store.state.products.currentPageList, { 'id': productID }));
+
+        //Decrease Stock
+        this.$store.dispatch('products/decreaseStock', { 'id': productID });
       }
     }
   };

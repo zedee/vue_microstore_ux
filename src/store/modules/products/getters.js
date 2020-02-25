@@ -1,9 +1,9 @@
 /* ============
- * Getters for the auth module
+ * Getters for the product module
  * ============
  *
  * The getters that are available on the
- * auth module.
+ * product module.
  */
 
 export default {
