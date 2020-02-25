@@ -25,7 +25,9 @@
           <span>Stock: {{ stock }}</span>
         </div>
         <div class="col-12 col-md-4 text-right">
-          <a href="#" class="btn btn-info btn-block" :data-product-id="id" @click="addProductToCart(id)">+ Add</a>
+          <button class="btn btn-info btn-block" :data-product-id="id" @click="addProductToCart(id)">
+            + Add
+          </button>
         </div>
       </div>
     </div>
@@ -33,6 +35,8 @@
 </template>
 
 <script>
+  import _ from 'lodash';
+
   export default {
     /**
      * The name of the component.
@@ -70,7 +74,9 @@
     },
     methods: {
       addProductToCart(productID) {
-        this.$store.dispatch('cart/addProduct', productID);
+        //As we cannot add a product from other page, iterate only on current one.
+        this.$store.dispatch('cart/addProduct',
+          _.find(this.$store.state.products.currentPageList, { 'id': productID }));
       }
     }
   };

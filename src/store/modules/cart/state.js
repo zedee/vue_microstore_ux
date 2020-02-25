@@ -6,5 +6,11 @@
  */
 
 export default {
-  cartContent: {},
+  cartContent: [],
+  cartItem: {
+    id: null,
+    name: '',
+    price: 0,
+    quantity: 0
+  }
 };

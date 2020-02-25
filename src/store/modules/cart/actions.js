@@ -8,9 +8,15 @@
 
 import * as types from './mutation-types';
 import ProductProxy from '../../../proxies/ProductProxy';
+import _ from 'lodash';
 
 export const addProduct = ({ commit }, payload) => {
-  commit(types.ADD_PRODUCT, payload);
+  if (payload) {
+    commit(types.ADD_PRODUCT, payload);
+  }
+  else {
+    console.log('No product present to add to cart');
+  }
 };
 
 export const removeProduct = ({ commit }) => {
