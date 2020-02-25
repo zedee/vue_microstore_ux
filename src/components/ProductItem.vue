@@ -2,15 +2,15 @@
   <div class="card">
     <v-lazy-image class="img-fluid img-card-top" :src="image_url" :alt="name" />
     <div class="card-body">
-      <div class="row my-3">
-        <div class="col-8 d-flex align-items-center">
-          <h5 class="card-title mb-0">{{ name }}</h5>
+      <div class="row my-md-3">
+        <div class="col-12 col-md-9 d-flex align-items-center">
+          <h1 class="h5 card-title mb-0 product-name"><strong>{{ name }}</strong></h1>
         </div>
-        <div class="col-4">
-          <h1 class="card-text d-none d-lg-block text-right">{{ price }} €</h1>
+        <div class="col-12 col-md-3 mt-3 my-md-0">
+          <h2 class="h4 card-text d-lg-block text-left text-md-right product-price">{{ price }} €</h2>
         </div>
       </div>
-      <b-card no-body class="mb-1">
+      <b-card no-body class="mb-1 d-none d-md-block">
         <b-card-header header-tag="header" class="p-1" role="tab">
           <b-button block href="#" v-b-toggle="'product-description-' + id" variant="info">Toggle description</b-button>
         </b-card-header>
@@ -21,11 +21,11 @@
         </b-collapse>
       </b-card>
       <div class="row mt-4">
-        <div class="col-8 d-flex align-items-center">
+        <div class="col-12 col-md-8 d-none d-md-flex align-items-center">
           <span>Stock: {{ stock }}</span>
         </div>
-        <div class="col-4 text-right">
-          <a href="#" class="btn btn-info" :data-product-id="id">+ Add</a>
+        <div class="col-12 col-md-4 text-right">
+          <a href="#" class="btn btn-info btn-block" :data-product-id="id">+ Add</a>
         </div>
       </div>
     </div>
@@ -71,8 +71,29 @@
   };
 </script>
 
-<style scoped>
-  .img-card-top {
+<style lang="scss" scoped>
+  .card-body {
+    padding: 0.5rem;
 
+    @media (min-width: 720px) {
+      padding: 1.25rem;
+    }
+  }
+
+  .product-name {
+    font-size: 1rem;
+
+    @media (min-width: 720px) {
+      font-size: 1.25rem;
+    }
+  }
+  .product-price {
+    font-size: 1rem;
+    color: cornflowerblue;
+
+    @media (min-width: 720px) {
+      font-size: 1.45rem;
+      color: black;
+    }
   }
 </style>
