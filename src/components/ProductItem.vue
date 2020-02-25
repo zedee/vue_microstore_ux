@@ -21,14 +21,20 @@
         </b-collapse>
       </b-card>
       <div class="row mt-4">
-        <div class="col-12 col-md-8 d-none d-md-flex align-items-center">
-          <span>Stock: {{ stock }}</span>
-        </div>
-        <div class="col-12 col-md-4 text-right">
-          <button class="btn btn-info btn-block" :data-product-id="id" @click="addProductToCart(id)">
-            + Add
-          </button>
-        </div>
+          <div class="col-12 col-md-8 d-none d-md-flex align-items-center">
+            <template v-if="stock > 0">
+              <span>Stock: {{ stock }}</span>
+            </template>
+            <template v-else>
+              <span class="badge badge-danger">Product out of stock</span>
+            </template>
+          </div>
+          <div class="col-12 col-md-4 text-right">
+            <button class="btn btn-info btn-block" :disabled="!(stock > 0)"
+                    :data-product-id="id" @click="addProductToCart(id)">
+              + Add
+            </button>
+          </div>
       </div>
     </div>
   </div>
@@ -52,7 +58,7 @@
         type: String
       },
       price: {
-        default: '0',
+        default: 0.00,
         type: Number
       },
       name: {
@@ -74,13 +80,20 @@
     },
     methods: {
       addProductToCart(productID) {
+        const selectedProduct = _.find(this.$store.state.products.currentPageList, { 'id': productID });
+
         //As we cannot add a product from other page, iterate only on current one.
-        this.$store.dispatch('cart/addProduct',
-          _.find(this.$store.state.products.currentPageList, { 'id': productID }));
+        this.$store.dispatch('cart/addProduct', selectedProduct);
 
         //Decrease Stock
-        this.$store.dispatch('products/decreaseStock', { 'id': productID });
+        this.$store.dispatch('products/updateProductStock', {
+          selectedProduct: selectedProduct,
+          action: 'decrease'
+        });
       }
+    },
+    computed: {
+
     }
   };
 </script>

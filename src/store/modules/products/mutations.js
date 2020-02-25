@@ -8,6 +8,7 @@
 
 import { LIST } from './mutation-types';
 import { SET_PAGE } from './mutation-types';
+import { UPDATE_PRODUCT_STOCK } from './mutation-types';
 
 /* eslint-disable no-param-reassign */
 export default {
@@ -44,6 +45,22 @@ export default {
     //Set First Page & Array index start and end
     sliceStartIndex = (state.currentPage) * state.itemsPerPage;
     sliceEndIndex = ((state.currentPage) * state.itemsPerPage) + state.itemsPerPage;
+    state.currentPageList = state.productList.slice(sliceStartIndex, sliceEndIndex);
+  },
+  [UPDATE_PRODUCT_STOCK](state, payload) {
+    //Update product stock on main product list
+    const productToUpdateIndex = _.findIndex(state.productList, { id: payload.selectedProduct.id });
+
+    if (payload.action === 'increase') {
+      state.productList[productToUpdateIndex].stock++;
+    }
+    else {
+      state.productList[productToUpdateIndex].stock--;
+    }
+
+    //Refresh currentPageList
+    const sliceStartIndex = (state.currentPage) * state.itemsPerPage;
+    const sliceEndIndex = ((state.currentPage) * state.itemsPerPage) + state.itemsPerPage;
     state.currentPageList = state.productList.slice(sliceStartIndex, sliceEndIndex);
   }
 };

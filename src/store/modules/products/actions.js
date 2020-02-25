@@ -29,8 +29,13 @@ export const prevPage = ({ commit }) => {
   commit(types.SET_PAGE, 'prev');
 };
 
+export const updateProductStock = ({ commit }, payload) => {
+  commit(types.UPDATE_PRODUCT_STOCK, payload);
+}
+
 export default {
   list,
   nextPage,
   prevPage,
+  updateProductStock
 };
