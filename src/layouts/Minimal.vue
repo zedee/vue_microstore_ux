@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col col-md-6 col-xs-12">
         <!-- Content will be placed here -->

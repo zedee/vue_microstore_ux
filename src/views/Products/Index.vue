@@ -1,10 +1,10 @@
 <template>
   <v-layout>
-    <div class="container-fluid">
+    <div>
       <span slot="header"><h1>Product list</h1></span>
       <div slot="body">
-        <div class="row row-cols-2 row-cols-md-4">
-          <div class="col-12 col-md-3 mb-4" v-for="product in productList">
+        <div class="row">
+          <div class="col-12 col-md-6 col-xl-3 mb-4" v-for="product in productList">
             <product-item :id="product.id"
                           :image_url="product.image_url"
                           :price="product.price"

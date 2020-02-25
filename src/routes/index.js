@@ -68,11 +68,11 @@ export default [
 
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/products',
   },
 
   {
     path: '/*',
-    redirect: '/home',
+    redirect: '/products',
   },
 ];
