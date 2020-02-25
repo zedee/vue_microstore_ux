@@ -7,7 +7,11 @@
           <span class="sr-only">Previous</span>
         </a>
       </li>
-      <li class="page-item"><a class="page-link" href="#" @click="goToPage">{{ currentPage }}</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">
+          {{ currentPage }} / {{ totalPages }}
+        </a>
+      </li>
       <li class="page-item">
         <a class="page-link" href="#" aria-label="Next" @click="nextPage">
           <span aria-hidden="true">&raquo;</span>
@@ -20,7 +24,7 @@
 
 <script>
   export default {
-    'name': 'ProductPaginator',
+    name: 'ProductPaginator',
     methods: {
       nextPage() {
         this.$store.dispatch('products/nextPage');
@@ -28,7 +32,6 @@
       prevPage() {
         this.$store.dispatch('products/prevPage');
       },
-      goToPage() {},
     },
     computed: {
       currentPage() { return this.$store.state.products.currentPage + 1 },

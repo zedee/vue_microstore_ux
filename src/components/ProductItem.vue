@@ -25,7 +25,7 @@
           <span>Stock: {{ stock }}</span>
         </div>
         <div class="col-12 col-md-4 text-right">
-          <a href="#" class="btn btn-info btn-block" :data-product-id="id">+ Add</a>
+          <a href="#" class="btn btn-info btn-block" :data-product-id="id" @click="addProductToCart(id)">+ Add</a>
         </div>
       </div>
     </div>
@@ -66,6 +66,11 @@
       favorite: {
         default: false,
         type: Boolean
+      }
+    },
+    methods: {
+      addProductToCart(productID) {
+        this.$store.dispatch('cart/addProduct', productID);
       }
     }
   };

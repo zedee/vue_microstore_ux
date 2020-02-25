@@ -14,6 +14,7 @@ import createLogger from 'vuex/dist/logger';
 import account from './modules/account';
 import auth from './modules/auth';
 import products from './modules/products';
+import cart from './modules/cart';
 
 const debug = process.env.NODE_ENV !== 'production';
 
@@ -25,6 +26,7 @@ export default new Vuex.Store({
     account,
     auth,
     products,
+    cart,
   },
 
   /**

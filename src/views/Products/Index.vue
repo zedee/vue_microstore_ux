@@ -18,6 +18,9 @@
             ></product-item>
           </div>
         </div>
+        <aside>
+          <shopping-cart></shopping-cart>
+        </aside>
       </div>
       <div slot="footer"></div>
     </div>
@@ -36,6 +39,7 @@
   import VCard from '@/components/Card.vue';
   import ProductItem from '@/components/ProductItem.vue';
   import ProductPaginator from '@/components/ProductPaginator.vue';
+  import ShoppingCart from '@/components/ShoppingCart.vue';
 
   export default {
     /**
@@ -49,6 +53,7 @@
     components: {
       ProductItem,
       ProductPaginator,
+      ShoppingCart,
       VLayout,
       VCard,
     },

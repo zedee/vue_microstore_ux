@@ -8,8 +8,6 @@
 
 import { LIST } from './mutation-types';
 import { SET_PAGE } from './mutation-types';
-import { NEXT_PAGE } from './mutation-types';
-import { PREV_PAGE } from './mutation-types';
 
 /* eslint-disable no-param-reassign */
 export default {
@@ -24,21 +22,25 @@ export default {
     let sliceStartIndex = 0;
     let sliceEndIndex = 0;
 
-    if (selectedPage === 'next') {
-      if (state.currentPage + 1 <= state.totalPages) {
-        state.currentPage = state.currentPage + 1;
-      }
+    switch (selectedPage) {
+      case 'next':
+        if (state.currentPage + 1 <= state.totalPages) {
+          state.currentPage = state.currentPage + 1;
+        }
+        break;
+      case 'prev':
+        if (state.currentPage > 0) {
+          state.currentPage = state.currentPage - 1;
+        }
+        break;
+      case Number.isInteger(selectedPage):
+      default:
+        if (selectedPage >= 0 && selectedPage <= state.totalPages) {
+          state.currentPage = selectedPage;
+        }
+        break;
     }
-    else if (selectedPage === 'prev') {
-      if (state.currentPage > 0) {
-        state.currentPage = state.currentPage - 1;
-      }
-    }
-    else if (Number.isInteger(selectedPage)) {
-      if (selectedPage >= 0 && selectedPage <= state.totalPages) {
-        state.currentPage = selectedPage;
-      }
-    }
+
     //Set First Page & Array index start and end
     sliceStartIndex = (state.currentPage) * state.itemsPerPage;
     sliceEndIndex = ((state.currentPage) * state.itemsPerPage) + state.itemsPerPage;
