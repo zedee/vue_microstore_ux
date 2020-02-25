@@ -6,5 +6,9 @@
  */
 
 export default {
-  productList: {},
+  productList: [],
+  currentPageList: [],
+  currentPage: 0,
+  totalPages: 0,
+  itemsPerPage: 16
 };

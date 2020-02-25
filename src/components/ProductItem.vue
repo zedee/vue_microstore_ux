@@ -2,8 +2,14 @@
   <div class="card">
     <v-lazy-image class="img-fluid img-card-top" :src="image_url" :alt="name" />
     <div class="card-body">
-      <h5 class="card-title">{{ name }}</h5>
-      <p class="card-text d-none d-lg-block"></p>
+      <div class="row my-3">
+        <div class="col-8 d-flex align-items-center">
+          <h5 class="card-title mb-0">{{ name }}</h5>
+        </div>
+        <div class="col-4">
+          <h1 class="card-text d-none d-lg-block text-right">{{ price }} €</h1>
+        </div>
+      </div>
       <b-card no-body class="mb-1">
         <b-card-header header-tag="header" class="p-1" role="tab">
           <b-button block href="#" v-b-toggle="'product-description-' + id" variant="info">Toggle description</b-button>
@@ -14,7 +20,14 @@
           </b-card-body>
         </b-collapse>
       </b-card>
-      <a href="#" class="btn btn-primary" :data-product-id="id">+ Add</a>
+      <div class="row mt-4">
+        <div class="col-8 d-flex align-items-center">
+          <span>Stock: {{ stock }}</span>
+        </div>
+        <div class="col-4 text-right">
+          <a href="#" class="btn btn-info" :data-product-id="id">+ Add</a>
+        </div>
+      </div>
     </div>
   </div>
 </template>

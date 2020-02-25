@@ -14,12 +14,23 @@ export const list = ({ commit }) => {
     .all()
     .then((response) => {
       commit(types.LIST, response);
+      commit(types.SET_PAGE, 0);
     })
     .catch(() => {
       console.log('Request Failed');
     });
 };
 
+export const nextPage = ({ commit }) => {
+  commit(types.SET_PAGE, 'next');
+};
+
+export const prevPage = ({ commit }) => {
+  commit(types.SET_PAGE, 'prev');
+};
+
 export default {
   list,
+  nextPage,
+  prevPage,
 };

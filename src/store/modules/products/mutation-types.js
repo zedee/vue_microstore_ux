@@ -7,7 +7,9 @@
  */
 
 export const LIST = 'LIST';
+export const SET_PAGE = 'SET_PAGE';
 
 export default {
   LIST,
+  SET_PAGE
 };

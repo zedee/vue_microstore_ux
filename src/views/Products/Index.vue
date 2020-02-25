@@ -1,7 +1,10 @@
 <template>
   <v-layout>
     <div>
-      <span slot="header"><h1>Product list</h1></span>
+      <div slot="header" class="d-flex align-items-betweeen">
+        <h1 class="mr-auto">Product list</h1>
+        <product-paginator></product-paginator>
+      </div>
       <div slot="body">
         <div class="row">
           <div class="col-12 col-md-6 col-xl-3 mb-4" v-for="product in productList">
@@ -32,6 +35,7 @@
   import VLayout from '@/layouts/Default.vue';
   import VCard from '@/components/Card.vue';
   import ProductItem from '@/components/ProductItem.vue';
+  import ProductPaginator from '@/components/ProductPaginator.vue';
 
   export default {
     /**
@@ -44,14 +48,20 @@
      */
     components: {
       ProductItem,
+      ProductPaginator,
       VLayout,
       VCard,
     },
     mounted() {
-      this.$store.dispatch('products/list');
+      if (!this.$store.state.products.currentPageList.length) {
+        this.$store.dispatch('products/list');
+      }
+    },
+    methods: {
+      setPage(input) { console.log(input); }
     },
     computed: {
-      productList() { return this.$store.state.products.productList }
+      productList() { return this.$store.state.products.currentPageList },
     }
   };
 </script>
