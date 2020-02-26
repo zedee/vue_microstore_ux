@@ -31,10 +31,10 @@
 
 <script>
   /* ============
-   * Products Index Page
+   * Favorites Index Page
    * ============
    *
-   * The products index page.
+   * The favorite products index page.
    */
 
   import VLayout from '@/layouts/Default.vue';
