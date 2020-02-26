@@ -15,8 +15,6 @@ import _ from 'lodash';
 /* eslint-disable no-param-reassign */
 export default {
   [ADD_PRODUCT](state, selectedProduct) {
-    console.log('CART MODULE: product added', selectedProduct);
-
     //Push article into cart if we don't have any, otherwise increase item qty
     if (!_.some(state.cartContent, { id: selectedProduct.id } )) {
       state.cartContent.push({
@@ -33,8 +31,6 @@ export default {
     }
   },
   [REMOVE_PRODUCT](state, selectedProduct) {
-    console.log('CART MODULE: product removed', selectedProduct);
-
     const currentProductIndex = _.findIndex(state.cartContent, { id: selectedProduct.id });
     state.cartContent[currentProductIndex].quantity--;
 

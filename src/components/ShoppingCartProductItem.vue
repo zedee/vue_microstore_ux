@@ -7,12 +7,12 @@
       <div class="d-flex flex-column justify-content-between h-100">
         <h1 class="h5 mb-0 product-name mt-auto mb-4"><strong>{{ name }}</strong></h1>
         <div class="quantity-selector mb-auto">
-          <button class="btn btn-light" :disabled="disableAddMoreProducts"
+          <button class="btn btn-success" :disabled="disableAddMoreProducts"
                   :data-product-id="id" @click="updateItemInCart(id, 'decrease')">
             +
           </button>
           <span class="p-3 mb-2 bg-light text-dark mx-3">{{ quantity }}</span>
-          <button class="btn btn-light"
+          <button class="btn btn-danger"
                   :data-product-id="id" @click="updateItemInCart(id, 'increase')">
             -
           </button>

@@ -89,7 +89,7 @@
         })
         .then(() => //As we cannot add a product from other page, iterate only on current one.
           this.$store.dispatch('cart/addProduct', selectedProduct))
-        .catch();
+        .catch((reason) => console.log(reason));
       }
     },
     computed: {

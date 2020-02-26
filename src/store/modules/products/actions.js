@@ -36,8 +36,6 @@ export const updateProductStock = ({ commit, state }, payload) => {
   return new Promise((resolve, reject) => {
     const productToUpdateIndex = _.findIndex(state.productList, { id: payload.selectedProduct.id });
 
-    console.log(state.productList[productToUpdateIndex].stock)
-
     if (state.productList[productToUpdateIndex].stock > 0 || payload.action === 'increase') {
       commit(types.UPDATE_PRODUCT_STOCK, payload);
       commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
