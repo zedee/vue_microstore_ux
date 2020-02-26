@@ -1,18 +1,18 @@
 <template>
   <div class="sidebar">
-    <div class="sidebar-backdrop" @click="closeSidebarPanel" v-if="isPanelOpen"></div>
+    <div class="cart-backdrop" @click="closeSidebarPanel" v-if="isPanelOpen"></div>
     <transition name="slide">
       <div v-if="isPanelOpen"
-           class="sidebar-panel">
+           class="cart-panel">
         <slot>
           <header class="d-flex justify-content-between align-items-center mb-3">
-            <span class="h1 align-self-start mb-0 close-sidebar-action" @click="closeSidebarPanel">
+            <span class="h1 align-self-start mb-0 close-cart-action" @click="closeSidebarPanel">
               <i class="fa fa-chevron-left"></i>
             </span>
             <h1 class="mb-0 mx-auto">My Cart</h1>
           </header>
-          <main>
-            <template v-if="cartItems.length">
+          <template v-if="cartItems.length">
+            <main class="cart-product-items-container">
               <ul class="list-unstyled">
                 <li v-for="cartItem in cartItems" :key="cartItem.id">
                   <ShoppingCartProductItem
@@ -24,15 +24,19 @@
                   ></ShoppingCartProductItem>
                 </li>
               </ul>
-            </template>
-            <template v-else>
-              <h1>There're no items in your cart</h1>
-            </template>
-          </main>
-          <footer>
+            </main>
+          </template>
+          <template v-else>
+            <main class="h-75 d-flex align-items-center justify-content-center">
+              <h1>Your cart is empty</h1>
+            </main>
+          </template>
+          <footer v-if="cartItems.length">
             <div class="row">
               <div class="col-12">
-                Total: {{ cartTotalPrice }} €
+                <h2 class="h4">
+                  Total amount: {{ cartTotalPrice }} €
+                </h2>
               </div>
             </div>
           </footer>
@@ -62,7 +66,7 @@
   }
 </script>
 
-<style>
+<style lang="scss" scoped>
   .slide-enter-active,
   .slide-leave-active
   {
@@ -71,11 +75,11 @@
 
   .slide-enter,
   .slide-leave-to {
-    transform: translateX(-100%);
+    transform: translateX(100%);
     transition: all 150ms ease-in 0s
   }
 
-  .sidebar-backdrop {
+  .cart-backdrop {
     background-color: rgba(0,0,0,.5);
     width: 100vw;
     height: 100vh;
@@ -85,19 +89,33 @@
     cursor: pointer;
   }
 
-  .sidebar-panel {
+  .cart-panel {
     overflow-y: auto;
     background-color: #ebebeb;
     position: fixed;
-    left: 0;
     top: 0;
+    right: 0;
     height: 100vh;
     z-index: 999;
     padding: 2rem 20px 2rem 20px;
-    width: 640px;
+    width: 100vw;
+
+    @media(min-width: 1024px) {
+      width: 50vw;
+    }
+
+    @media(min-width: 1280px) {
+      width: 33vw;
+    }
   }
 
-  .close-sidebar-action {
+  .close-cart-action {
     cursor: pointer;
+  }
+
+  .cart-product-items-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 80vh;
   }
 </style>
