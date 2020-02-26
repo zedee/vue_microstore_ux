@@ -2,12 +2,12 @@
   <v-layout>
     <div>
       <div slot="header" class="d-flex flex-column flex-md-row align-items-center align-items-md-betweeen flex-wrap">
-        <h1 class="mx-auto mx-md-0 mr-md-auto">Product list</h1>
+        <h1 class="mx-auto mx-md-0 mr-md-auto">Favorite list</h1>
         <product-paginator></product-paginator>
       </div>
       <div slot="body">
         <div class="row">
-          <div class="col-6 col-xl-3 mb-4" v-for="product in productList">
+          <div class="col-6 col-xl-3 mb-4" v-for="product in favoriteList">
             <product-item :id="product.id"
                           :image_url="product.image_url"
                           :price="product.price"
@@ -30,12 +30,12 @@
 </template>
 
 <script>
-/* ============
- * Products Index Page
- * ============
- *
- * The products index page.
- */
+  /* ============
+   * Products Index Page
+   * ============
+   *
+   * The products index page.
+   */
 
   import VLayout from '@/layouts/Default.vue';
   import VCard from '@/components/Card.vue';
@@ -47,7 +47,7 @@
     /**
      * The name of the page.
      */
-    name: 'ProductsIndex',
+    name: 'FavoritesIndex',
 
     /**
      * The components that the page can use.
@@ -63,13 +63,13 @@
       return {}
     },
     mounted() {
-        this.$store.dispatch('products/list');
+        this.$store.dispatch('products/favoriteList');
     },
     methods: {
       setPage(input) { console.log(input); }
     },
     computed: {
-      productList() { return this.$store.state.products.currentPageList },
+      favoriteList() { return this.$store.state.products.currentPageList },
     }
   };
 </script>

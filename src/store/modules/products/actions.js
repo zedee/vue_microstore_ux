@@ -22,6 +22,19 @@ export const list = ({ commit }) => {
     });
 };
 
+export const favoriteList = ({ commit }) => {
+  new ProductProxy({ favorite: 1 })
+    .all()
+    .then((response) => {
+      commit(types.FAVORITE_LIST, response);
+      commit(types.SET_PAGE, 0);
+      commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
+    })
+    .catch(() => {
+      console.log('Request Failed');
+    });
+};
+
 export const nextPage = ({ commit }) => {
   commit(types.SET_PAGE, 'next');
   commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
@@ -47,9 +60,15 @@ export const updateProductStock = ({ commit, state }, payload) => {
   });
 };
 
+export const updateProductFavorite = ({ commit, state }, payload) => {
+
+};
+
 export default {
   list,
+  favoriteList,
   nextPage,
   prevPage,
   updateProductStock,
+  updateProductFavorite,
 };

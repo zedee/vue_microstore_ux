@@ -12,9 +12,8 @@ export default [
     name: 'home.index',
     component: () => import('@/views/Home/Index.vue'),
 
-    // If the user needs to be authenticated to view this page
     meta: {
-      auth: false,
+      guest: true,
     },
   },
 
@@ -24,14 +23,24 @@ export default [
     name: 'products.index',
     component: () => import('@/views/Products/Index.vue'),
 
-    // If the user needs to be authenticated to view this page
     meta: {
-      auth: false,
+      guest: true,
+    },
+  },
+
+  // Favorites List
+  {
+    path: '/favorites',
+    name: 'favorites.index',
+    component: () => import('@/views/Favorites/Index.vue'),
+
+    meta: {
+      guest: true,
     },
   },
 
   // Account
-  {
+  /*{
     path: '/account',
     name: 'account.index',
     component: () => import('@/views/Account/Index.vue'),
@@ -64,7 +73,7 @@ export default [
     meta: {
       guest: true,
     },
-  },
+  },*/
 
   {
     path: '/',

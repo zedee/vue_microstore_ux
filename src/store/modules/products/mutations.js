@@ -7,6 +7,7 @@
  */
 
 import { LIST } from './mutation-types';
+import { FAVORITE_LIST } from './mutation-types';
 import { SET_PAGE } from './mutation-types';
 import { UPDATE_PRODUCT_STOCK } from './mutation-types';
 import { REFRESH_PRODUCT_ACTIVE_PAGE } from "./mutation-types";
@@ -14,6 +15,13 @@ import { REFRESH_PRODUCT_ACTIVE_PAGE } from "./mutation-types";
 /* eslint-disable no-param-reassign */
 export default {
   [LIST](state, payload) {
+    state.productList = payload;
+    //Get total pages
+    state.totalPages = Math.ceil(payload.length / state.itemsPerPage);
+    //Set initial page to zero
+    state.currentPage = 0;
+  },
+  [FAVORITE_LIST](state, payload) {
     state.productList = payload;
     //Get total pages
     state.totalPages = Math.ceil(payload.length / state.itemsPerPage);

@@ -22,26 +22,6 @@
       >
         <ul class="navbar-nav mr-auto">
           <router-link
-            :to="{ name: 'home.index' }"
-            active-class="active"
-            class="nav-item"
-            tag="li"
-          >
-            <a class="nav-link">
-              Home
-            </a>
-          </router-link>
-          <router-link
-            :to="{ name: 'account.index' }"
-            active-class="active"
-            class="nav-item"
-            tag="li"
-          >
-            <a class="nav-link">
-              Account
-            </a>
-          </router-link>
-          <router-link
             :to="{ name: 'products.index' }"
             active-class="active"
             class="nav-item"
@@ -49,6 +29,16 @@
           >
             <a class="nav-link">
               Products
+            </a>
+          </router-link>
+          <router-link
+            :to="{ name: 'favorites.index' }"
+            active-class="active"
+            class="nav-item"
+            tag="li"
+          >
+            <a class="nav-link">
+              Favorites
             </a>
           </router-link>
         </ul>
