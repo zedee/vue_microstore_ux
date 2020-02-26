@@ -3,7 +3,7 @@
     <div class="col-4">
       <v-lazy-image class="img-fluid" :src="image_url" :alt="name" />
     </div>
-    <div class="col-6">
+    <div class="col-5">
       <div class="d-flex flex-column justify-content-between h-100">
         <h1 class="h5 mb-0 product-name mt-auto mb-4"><strong>{{ name }}</strong></h1>
         <div class="quantity-selector mb-auto">
@@ -19,8 +19,8 @@
         </div>
       </div>
     </div>
-    <div class="col-2 d-flex align-items-center">
-      <h2 class="h4 card-text d-lg-block text-left text-md-right product-price">{{ price }} €</h2>
+    <div class="col-3 d-flex align-items-center justify-content-end">
+      <h2 class="h4 card-text d-lg-block text-left text-md-right product-price pr-md-3">{{ price }} €</h2>
     </div>
   </div>
 </template>

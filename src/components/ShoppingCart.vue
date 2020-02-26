@@ -5,7 +5,7 @@
       <div v-if="isPanelOpen"
            class="cart-panel">
         <slot>
-          <header class="d-flex justify-content-between align-items-center mb-3">
+          <header class="d-flex justify-content-between align-items-center mb-5">
             <span class="h1 align-self-start mb-0 close-cart-action" @click="closeSidebarPanel">
               <i class="fa fa-chevron-left"></i>
             </span>
@@ -31,11 +31,11 @@
               <h1>Your cart is empty</h1>
             </main>
           </template>
-          <footer v-if="cartItems.length">
+          <footer class="mt-4">
             <div class="row">
               <div class="col-12">
-                <h2 class="h4">
-                  Total amount: {{ cartTotalPrice }} €
+                <h2 class="h4 text-right">
+                  Total amount: <span>{{ cartTotalPrice }} €</span>
                 </h2>
               </div>
             </div>
@@ -99,13 +99,15 @@
     z-index: 999;
     padding: 2rem 20px 2rem 20px;
     width: 100vw;
+    display: flex;
+    flex-direction: column;
 
     @media(min-width: 1024px) {
       width: 50vw;
     }
 
     @media(min-width: 1280px) {
-      width: 33vw;
+      width: 40vw;
     }
   }
 
