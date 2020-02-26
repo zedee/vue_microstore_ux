@@ -15,6 +15,7 @@ export const list = ({ commit }) => {
     .then((response) => {
       commit(types.LIST, response);
       commit(types.SET_PAGE, 0);
+      commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
     })
     .catch(() => {
       console.log('Request Failed');
@@ -23,15 +24,18 @@ export const list = ({ commit }) => {
 
 export const nextPage = ({ commit }) => {
   commit(types.SET_PAGE, 'next');
+  commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
 };
 
 export const prevPage = ({ commit }) => {
   commit(types.SET_PAGE, 'prev');
+  commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
 };
 
 export const updateProductStock = ({ commit }, payload) => {
   commit(types.UPDATE_PRODUCT_STOCK, payload);
-}
+  commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
+};
 
 export default {
   list,

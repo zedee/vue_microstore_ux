@@ -5,6 +5,8 @@
       <div v-if="isPanelOpen"
            class="sidebar-panel">
         <slot>
+          <h1 class="mb-4">My Cart</h1>
+          <template v-if="cartItems.length">
           <ul class="list-unstyled">
             <li v-for="cartItem in cartItems" :key="cartItem.id">
               <ShoppingCartProductItem
@@ -16,6 +18,11 @@
               ></ShoppingCartProductItem>
             </li>
           </ul>
+          </template>
+          <template v-else>
+            <h1>There're no items in your cart</h1>
+          </template>
+
         </slot>
       </div>
     </transition>
@@ -72,7 +79,7 @@
     top: 0;
     height: 100vh;
     z-index: 999;
-    padding: 3rem 20px 2rem 20px;
+    padding: 2rem 20px 2rem 20px;
     width: 640px;
   }
 </style>

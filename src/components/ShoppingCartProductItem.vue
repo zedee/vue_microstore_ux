@@ -1,23 +1,26 @@
 <template>
-  <div class="card">
-    <v-lazy-image class="img-fluid img-card-top" :src="image_url" :alt="name" />
-    <div class="card-body">
-      <div class="row my-md-3">
-        <div class="col-12 col-md-9 d-flex align-items-center">
-          <h1 class="h5 card-title mb-0 product-name"><strong>{{ name }}</strong></h1>
-        </div>
-        <div class="col-12 col-md-3 mt-3 my-md-0">
-          <h2 class="h4 card-text d-lg-block text-left text-md-right product-price">{{ price }} €</h2>
-        </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col-12 col-md-4 text-right">
-          <button class="btn btn-info btn-block"
+  <div class="row mb-3">
+    <div class="col-4">
+      <v-lazy-image class="img-fluid" :src="image_url" :alt="name" />
+    </div>
+    <div class="col-6">
+      <div class="d-flex flex-column justify-content-around h-100">
+        <h1 class="h5 mb-0 product-name mb-auto"><strong>{{ name }}</strong></h1>
+        <div class="quantity-selector mt-auto">
+          <button class="btn btn-light"
                   :data-product-id="id" @click="addProductToCart(id)">
-            + Add
+            +
+          </button>
+          <span>{{ quantity }}</span>
+          <button class="btn btn-light"
+                  :data-product-id="id" @click="addProductToCart(id)">
+            -
           </button>
         </div>
       </div>
+    </div>
+    <div class="col-2">
+      <h2 class="h4 card-text d-lg-block text-left text-md-right product-price">{{ price }} €</h2>
     </div>
   </div>
 </template>
