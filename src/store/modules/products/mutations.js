@@ -43,13 +43,17 @@ export default {
   [UPDATE_PRODUCT_STOCK](state, payload) {
     //Update product stock on main product list
     const productToUpdateIndex = _.findIndex(state.productList, { id: payload.selectedProduct.id });
+    let productHasMoreStock = false;
 
     if (payload.action === 'increase') {
       state.productList[productToUpdateIndex].stock++;
+      productHasMoreStock = true;
     }
     else {
       state.productList[productToUpdateIndex].stock--;
     }
+
+    return productHasMoreStock;
   },
   [REFRESH_PRODUCT_ACTIVE_PAGE](state) {
     //Refresh currentPageList

@@ -6,6 +6,9 @@
  * cart module.
  */
 
+import _ from 'lodash';
+
 export default {
-  itemsInCart: (state) => state.cartContent.length
+  itemsInCart: (state) => state.cartContent.length,
+  itemsTotalSum: (state) => _.sumBy(state.cartContent, (item) => item.price * item.quantity ),
 };

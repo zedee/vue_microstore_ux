@@ -33,8 +33,20 @@ export const prevPage = ({ commit }) => {
 };
 
 export const updateProductStock = ({ commit }, payload) => {
-  commit(types.UPDATE_PRODUCT_STOCK, payload);
-  commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
+  let productCanBeAdded = false;
+
+  return new Promise((resolve, reject) => {
+    productCanBeAdded = commit(types.UPDATE_PRODUCT_STOCK, payload);
+
+    if (productCanBeAdded) {
+      resolve(true)
+    }
+    else {
+      reject(false)
+    }
+
+    commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
+  });
 };
 
 export default {

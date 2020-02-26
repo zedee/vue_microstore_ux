@@ -22,7 +22,13 @@
           <template v-else>
             <h1>There're no items in your cart</h1>
           </template>
-
+        </slot>
+        <slot>
+          <div class="row">
+            <div class="col-12">
+              Total: {{ cartTotalPrice }} €
+            </div>
+          </div>
         </slot>
       </div>
     </transition>
@@ -44,6 +50,7 @@
     computed: {
       isPanelOpen() { return this.$store.state.cart.isVisible },
       cartItems() { return this.$store.state.cart.cartContent },
+      cartTotalPrice() { return this.$store.getters['cart/itemsTotalSum'] },
     }
   }
 </script>
