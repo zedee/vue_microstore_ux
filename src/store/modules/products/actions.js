@@ -51,5 +51,5 @@ export default {
   list,
   nextPage,
   prevPage,
-  updateProductStock
+  updateProductStock,
 };

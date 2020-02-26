@@ -31,9 +31,14 @@ export const toggleCartVisibility = ({ commit }) => {
   commit(types.TOGGLE_CART_VISIBILITY);
 };
 
+export const checkout = ({ commit, state }) => {
+  //TODO: Consolidate stocks on backend, clear cart and trigger product reload
+};
+
 export default {
   addProduct,
   removeProduct,
   setProductQuantity,
-  toggleCartVisibility
+  toggleCartVisibility,
+  checkout,
 };

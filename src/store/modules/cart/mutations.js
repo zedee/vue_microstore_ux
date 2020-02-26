@@ -10,6 +10,8 @@ import { ADD_PRODUCT } from './mutation-types';
 import { REMOVE_PRODUCT } from './mutation-types';
 import { SET_PRODUCT_QUANTITY } from './mutation-types';
 import { TOGGLE_CART_VISIBILITY } from './mutation-types';
+import { RESET } from './mutation-types';
+
 import _ from 'lodash';
 
 /* eslint-disable no-param-reassign */
@@ -43,5 +45,8 @@ export default {
   },
   [TOGGLE_CART_VISIBILITY](state) {
     state.isVisible = !state.isVisible;
+  },
+  [RESET](state) {
+    state.cartContent = [];
   }
 };

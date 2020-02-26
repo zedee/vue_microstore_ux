@@ -38,7 +38,10 @@
                   Total amount: <span class="cart-total-price">{{ cartTotalPrice }} €</span>
                 </h2>
                 <hr>
-                <button v-if="cartItems.length" class="btn btn-success btn-block py-3 mt-4 mb-1">
+                <button v-if="cartItems.length"
+                        class="btn btn-success btn-block py-3 mt-4 mb-1"
+                        @click="checkout"
+                >
                   Checkout
                 </button>
               </div>
@@ -60,6 +63,11 @@
     methods: {
       closeSidebarPanel() {
         this.$store.dispatch('cart/toggleCartVisibility');
+      },
+      checkout() {
+        this.$store.dispatch('cart/checkout')
+        .then(() => console.log('Checkout success'))
+        .catch((reason) => console.log(reason));
       }
     },
     computed: {
