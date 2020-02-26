@@ -35,8 +35,12 @@
             <div class="row">
               <div class="col-12">
                 <h2 class="h4 text-right">
-                  Total amount: <span>{{ cartTotalPrice }} €</span>
+                  Total amount: <span class="cart-total-price">{{ cartTotalPrice }} €</span>
                 </h2>
+                <hr>
+                <button v-if="cartItems.length" class="btn btn-success btn-block py-3 mt-4 mb-1">
+                  Checkout
+                </button>
               </div>
             </div>
           </footer>
@@ -91,7 +95,7 @@
 
   .cart-panel {
     overflow-y: auto;
-    background-color: #ebebeb;
+    background-color: #FFF;
     position: fixed;
     top: 0;
     right: 0;
@@ -101,6 +105,7 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
+    box-shadow: -2px 0 12px 0px #454545;
 
     @media(min-width: 1024px) {
       width: 50vw;
@@ -118,6 +123,10 @@
   .cart-product-items-container {
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: 80vh;
+    height: 80vh;
+  }
+
+  .cart-total-price {
+    color: indianred;
   }
 </style>

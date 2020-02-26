@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card product-card">
     <v-lazy-image class="img-fluid img-card-top" :src="image_url" :alt="name" />
     <div class="card-body">
       <div class="row my-md-3">
@@ -23,10 +23,10 @@
       <div class="row mt-4">
           <div class="col-12 col-md-8 d-none d-md-flex align-items-center">
             <template v-if="stock > 0">
-              <span>Stock: {{ stock }}</span>
+              <span :class="stockColorInfo">{{ stock }} left</span>
             </template>
             <template v-else>
-              <span class="badge badge-danger">Product out of stock</span>
+              <span class="badge badge-dark">Product out of stock</span>
             </template>
           </div>
           <div class="col-12 col-md-4 text-right">
@@ -93,12 +93,31 @@
       }
     },
     computed: {
+      stockColorInfo() {
+        let colorClass = 'text-dark';
 
+        if (this.stock < 5 && this.stock > 2) {
+          colorClass = 'badge badge-warning';
+        }
+        else if (this.stock <= 2 ) {
+          colorClass = 'badge badge-danger';
+        }
+
+        return colorClass;
+      }
     }
   };
 </script>
 
 <style lang="scss" scoped>
+  .badge {
+    font-size: 100%;
+  }
+
+  .card.product-card {
+    box-shadow: 3px 3px 8px 0px #b5b5b5;
+  }
+
   .card-body {
     padding: 0.5rem;
 

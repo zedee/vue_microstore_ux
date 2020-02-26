@@ -1,20 +1,22 @@
 <template>
-  <div class="row mb-3">
-    <div class="col-4">
+  <div class="row mb-1">
+    <div class="col-3 col-md-4 d-flex align-items-center">
       <v-lazy-image class="img-fluid" :src="image_url" :alt="name" />
     </div>
-    <div class="col-5">
+    <div class="col-6 col-md-5">
       <div class="d-flex flex-column justify-content-between h-100">
         <h1 class="h5 mb-0 product-name mt-auto mb-4"><strong>{{ name }}</strong></h1>
         <div class="quantity-selector mb-auto">
           <button class="btn btn-success" :disabled="disableAddMoreProducts"
                   :data-product-id="id" @click="updateItemInCart(id, 'decrease')">
-            +
+            <i class="fa fa-plus"></i>
+            <span class="sr-only">Add item</span>
           </button>
           <span class="p-3 mb-2 bg-light text-dark mx-3">{{ quantity }}</span>
           <button class="btn btn-danger"
                   :data-product-id="id" @click="updateItemInCart(id, 'increase')">
-            -
+            <i class="fa fa-minus"></i>
+            <span class="sr-only">Remove item</span>
           </button>
         </div>
       </div>
@@ -22,6 +24,7 @@
     <div class="col-3 d-flex align-items-center justify-content-end">
       <h2 class="h4 card-text d-lg-block text-left text-md-right product-price pr-md-3">{{ price }} €</h2>
     </div>
+    <hr class="w-100">
   </div>
 </template>
 
