@@ -4,21 +4,39 @@
     <transition name="slide">
       <div v-if="isPanelOpen"
            class="sidebar-panel">
-        <slot></slot>
+        <slot>
+          <ul class="list-unstyled">
+            <li v-for="cartItem in cartItems" :key="cartItem.id">
+              <ShoppingCartProductItem
+                :id="cartItem.id"
+                :image_url="cartItem.image_url"
+                :price="cartItem.price"
+                :name="cartItem.name"
+                :quantity="cartItem.quantity"
+              ></ShoppingCartProductItem>
+            </li>
+          </ul>
+        </slot>
       </div>
     </transition>
   </div>
 </template>
 <script>
+  import ShoppingCartProductItem from "./ShoppingCartProductItem";
+
   export default {
     name: 'ShoppingCart',
+    components: {
+      ShoppingCartProductItem
+    },
     methods: {
       closeSidebarPanel() {
         this.$store.dispatch('cart/toggleCartVisibility');
       }
     },
     computed: {
-      isPanelOpen() { return this.$store.state.cart.isVisible }
+      isPanelOpen() { return this.$store.state.cart.isVisible },
+      cartItems() { return this.$store.state.cart.cartContent },
     }
   }
 </script>
@@ -48,7 +66,7 @@
 
   .sidebar-panel {
     overflow-y: auto;
-    background-color: #130f40;
+    background-color: #ebebeb;
     position: fixed;
     left: 0;
     top: 0;
