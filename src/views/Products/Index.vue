@@ -1,8 +1,8 @@
 <template>
   <v-layout>
     <div>
-      <div slot="header" class="d-flex align-items-betweeen">
-        <h1 class="mr-auto">Product list</h1>
+      <div slot="header" class="d-flex flex-column flex-md-row align-items-center align-items-md-betweeen flex-wrap">
+        <h1 class="mx-auto mx-md-0 mr-md-auto">Product list</h1>
         <product-paginator></product-paginator>
       </div>
       <div slot="body">

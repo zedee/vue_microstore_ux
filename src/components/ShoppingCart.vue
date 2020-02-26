@@ -5,30 +5,37 @@
       <div v-if="isPanelOpen"
            class="sidebar-panel">
         <slot>
-          <h1 class="mb-4">My Cart</h1>
-          <template v-if="cartItems.length">
-          <ul class="list-unstyled">
-            <li v-for="cartItem in cartItems" :key="cartItem.id">
-              <ShoppingCartProductItem
-                :id="cartItem.id"
-                :image_url="cartItem.image_url"
-                :price="cartItem.price"
-                :name="cartItem.name"
-                :quantity="cartItem.quantity"
-              ></ShoppingCartProductItem>
-            </li>
-          </ul>
-          </template>
-          <template v-else>
-            <h1>There're no items in your cart</h1>
-          </template>
-        </slot>
-        <slot>
-          <div class="row">
-            <div class="col-12">
-              Total: {{ cartTotalPrice }} €
+          <header class="d-flex justify-content-between align-items-center mb-3">
+            <span class="h1 align-self-start mb-0 close-sidebar-action" @click="closeSidebarPanel">
+              <i class="fa fa-chevron-left"></i>
+            </span>
+            <h1 class="mb-0 mx-auto">My Cart</h1>
+          </header>
+          <main>
+            <template v-if="cartItems.length">
+              <ul class="list-unstyled">
+                <li v-for="cartItem in cartItems" :key="cartItem.id">
+                  <ShoppingCartProductItem
+                    :id="cartItem.id"
+                    :image_url="cartItem.image_url"
+                    :price="cartItem.price"
+                    :name="cartItem.name"
+                    :quantity="cartItem.quantity"
+                  ></ShoppingCartProductItem>
+                </li>
+              </ul>
+            </template>
+            <template v-else>
+              <h1>There're no items in your cart</h1>
+            </template>
+          </main>
+          <footer>
+            <div class="row">
+              <div class="col-12">
+                Total: {{ cartTotalPrice }} €
+              </div>
             </div>
-          </div>
+          </footer>
         </slot>
       </div>
     </transition>
@@ -88,5 +95,9 @@
     z-index: 999;
     padding: 2rem 20px 2rem 20px;
     width: 640px;
+  }
+
+  .close-sidebar-action {
+    cursor: pointer;
   }
 </style>

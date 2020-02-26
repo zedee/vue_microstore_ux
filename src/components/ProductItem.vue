@@ -3,10 +3,10 @@
     <v-lazy-image class="img-fluid img-card-top" :src="image_url" :alt="name" />
     <div class="card-body">
       <div class="row my-md-3">
-        <div class="col-12 col-md-9 d-flex align-items-center">
+        <div class="col-12 col-md-9 col-lg-8 d-flex align-items-center">
           <h1 class="h5 card-title mb-0 product-name"><strong>{{ name }}</strong></h1>
         </div>
-        <div class="col-12 col-md-3 mt-3 my-md-0">
+        <div class="col-12 col-md-3 col-lg-4 mt-3 my-md-0">
           <h2 class="h4 card-text d-lg-block text-left text-md-right product-price">{{ price }} €</h2>
         </div>
       </div>
