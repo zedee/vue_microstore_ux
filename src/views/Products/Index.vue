@@ -14,7 +14,7 @@
                           :name="product.productName"
                           :description="product.productDescription"
                           :stock="product.stock"
-                          :favorite="product.favorite === true"
+                          :favorite="product.favorite == true"
             ></product-item>
           </div>
         </div>

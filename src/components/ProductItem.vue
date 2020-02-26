@@ -1,5 +1,8 @@
 <template>
   <div class="card product-card">
+    <span :class="'product-favorite h2 ' + isProductFavorite">
+      <i class="fa fa-heart"></i>
+    </span>
     <v-lazy-image class="img-fluid img-card-top" :src="image_url" :alt="name" />
     <div class="card-body">
       <div class="row my-md-3">
@@ -104,6 +107,9 @@
         }
 
         return colorClass;
+      },
+      isProductFavorite() {
+        return this.favorite ? 'text-danger' : 'text-light';
       }
     }
   };
@@ -133,6 +139,7 @@
       font-size: 1.25rem;
     }
   }
+
   .product-price {
     font-size: 1rem;
     color: cornflowerblue;
@@ -141,5 +148,12 @@
       font-size: 1.45rem;
       color: black;
     }
+  }
+
+  .product-favorite {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
   }
 </style>
