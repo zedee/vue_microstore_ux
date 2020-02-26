@@ -32,8 +32,15 @@ export default {
       state.cartContent[currentProductIndex].quantity++;
     }
   },
-  [REMOVE_PRODUCT](state, productID) {
-    console.log('CART MODULE: product removed', productID);
+  [REMOVE_PRODUCT](state, selectedProduct) {
+    console.log('CART MODULE: product removed', selectedProduct);
+
+    const currentProductIndex = _.findIndex(state.cartContent, { id: selectedProduct.id });
+    state.cartContent[currentProductIndex].quantity--;
+
+    if (state.cartContent[currentProductIndex].quantity === 0) {
+      state.cartContent.splice(currentProductIndex, 1);
+    }
   },
   [SET_PRODUCT_QUANTITY](state, quantity) {
 

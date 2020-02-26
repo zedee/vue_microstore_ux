@@ -19,8 +19,8 @@ export const addProduct = ({ commit }, payload) => {
   }
 };
 
-export const removeProduct = ({ commit }) => {
-  commit(types.REMOVE_PRODUCT);
+export const removeProduct = ({ commit }, payload) => {
+  commit(types.REMOVE_PRODUCT, payload);
 };
 
 export const setProductQuantity = ({ commit }) => {

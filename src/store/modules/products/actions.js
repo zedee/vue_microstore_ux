@@ -32,20 +32,20 @@ export const prevPage = ({ commit }) => {
   commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
 };
 
-export const updateProductStock = ({ commit }, payload) => {
-  let productCanBeAdded = false;
-
+export const updateProductStock = ({ commit, state }, payload) => {
   return new Promise((resolve, reject) => {
-    productCanBeAdded = commit(types.UPDATE_PRODUCT_STOCK, payload);
+    const productToUpdateIndex = _.findIndex(state.productList, { id: payload.selectedProduct.id });
 
-    if (productCanBeAdded) {
-      resolve(true)
+    console.log(state.productList[productToUpdateIndex].stock)
+
+    if (state.productList[productToUpdateIndex].stock > 0 || payload.action === 'increase') {
+      commit(types.UPDATE_PRODUCT_STOCK, payload);
+      commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
+      resolve()
     }
     else {
-      reject(false)
+      reject('No more items on stock')
     }
-
-    commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
   });
 };
 

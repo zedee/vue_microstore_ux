@@ -7,13 +7,13 @@
       <div class="d-flex flex-column justify-content-between h-100">
         <h1 class="h5 mb-0 product-name mt-auto mb-4"><strong>{{ name }}</strong></h1>
         <div class="quantity-selector mb-auto">
-          <button class="btn btn-light"
-                  :data-product-id="id" @click="addProductToCart(id)">
+          <button class="btn btn-light" :disabled="disableAddMoreProducts"
+                  :data-product-id="id" @click="updateItemInCart(id, 'decrease')">
             +
           </button>
           <span class="p-3 mb-2 bg-light text-dark mx-3">{{ quantity }}</span>
           <button class="btn btn-light"
-                  :data-product-id="id" @click="addProductToCart(id)">
+                  :data-product-id="id" @click="updateItemInCart(id, 'increase')">
             -
           </button>
         </div>
@@ -35,7 +35,7 @@
     name: 'ShoppingCartProductItem',
     data() {
       return {
-        moreProductsCanBeAdded: true
+        disableAddMoreProducts: false
       }
     },
     props: {
@@ -61,19 +61,23 @@
       },
     },
     methods: {
-      addProductToCart(productID) {
-        const selectedProduct = _.find(this.$store.state.products.currentPageList, { 'id': productID });
-
-        //As we cannot add a product from other page, iterate only on current one.
-        this.$store.dispatch('cart/addProduct', selectedProduct);
+      updateItemInCart(productID, action) {
+        const selectedProduct = _.find(this.$store.state.cart.cartContent, { 'id': productID });
 
         //Decrease Stock
         this.$store.dispatch('products/updateProductStock', {
           selectedProduct: selectedProduct,
-          action: 'decrease'
+          action: action
         })
-        .then(() => this.moreProductsCanBeAdded = true)
-        .catch(() => this.moreProductsCanBeAdded = false);
+        .then(() => {
+          if (action === 'decrease') {
+            this.$store.dispatch('cart/addProduct', selectedProduct)
+          }
+          else {
+            this.$store.dispatch('cart/removeProduct', selectedProduct)
+          }
+        })
+        .catch(() => this.disableAddMoreProducts = true);
       }
     },
   };
