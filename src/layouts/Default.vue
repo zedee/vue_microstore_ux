@@ -42,30 +42,41 @@
             </a>
           </router-link>
         </ul>
-        <span class="navbar-text mr-3">
-          <a
-            class="btn btn-secondary"
-            href="#"
-            @click.prevent="showCart"
-          >
-            <i class="fa fa-shopping-cart"/>
-            <template v-if="itemsInCart > 0">
-              &nbsp; Products <span class="badge badge-light">{{ itemsInCart }}</span>
-              <span class="sr-only"> products in cart</span>
-            </template>
-          </a>
-        </span>
-        <span class="navbar-text">
-          <a
-            class="btn btn-secondary"
-            href="#"
-            @click.prevent="logout"
-          >
-            <i class="fa fa-sign-out"/>
-          </a>
-        </span>
       </div>
     </nav>
+
+    <div class="action-buttons-bar">
+      <ul class="list-unstyled list-inline">
+        <li class="list-inline-item">
+          <span class="navbar-text mr-3">
+            <a
+              class="btn btn-secondary"
+              href="#"
+              @click.prevent="showCart"
+            >
+              <i class="fa fa-shopping-cart"/>
+              <template v-if="itemsInCart > 0">
+                &nbsp; Products <span class="badge badge-light">{{ itemsInCart }}</span>
+                <span class="sr-only"> products in cart</span>
+              </template>
+            </a>
+          </span>
+        </li>
+        <!-- Disable logout button as is not needed in this project
+        <li class="list-inline-item">
+          <span class="navbar-text">
+            <a
+              class="btn btn-secondary"
+              href="#"
+              @click.prevent="logout"
+            >
+              <i class="fa fa-sign-out"/>
+            </a>
+          </span>
+        </li>
+        -->
+      </ul>
+    </div>
 
     <div class="container-fluid pt-4">
       <div class="row">

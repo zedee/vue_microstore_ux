@@ -7,7 +7,7 @@
       </div>
       <div slot="body">
         <div class="row">
-          <div class="col-6 col-xl-3 mb-4" v-for="product in productList">
+          <div class="col-12 col-md-6 col-xl-3 mb-4" v-for="product in productList">
             <product-item :product="product"></product-item>
           </div>
         </div>
