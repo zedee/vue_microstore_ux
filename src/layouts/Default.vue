@@ -45,13 +45,13 @@
       </div>
     </nav>
 
-    <div class="action-buttons-bar">
-      <ul class="list-unstyled list-inline">
+    <nav class="action-buttons-bar navbar sticky-top d-flex justify-content-center justify-content-md-end py-3">
+      <ul class="list-unstyled list-inline mb-0">
         <li class="list-inline-item">
-          <span class="navbar-text mr-3">
             <a
               class="btn btn-secondary"
               href="#"
+              title="My Cart"
               @click.prevent="showCart"
             >
               <i class="fa fa-shopping-cart"/>
@@ -60,7 +60,6 @@
                 <span class="sr-only"> products in cart</span>
               </template>
             </a>
-          </span>
         </li>
         <!-- Disable logout button as is not needed in this project
         <li class="list-inline-item">
@@ -76,7 +75,7 @@
         </li>
         -->
       </ul>
-    </div>
+    </nav>
 
     <div class="container-fluid pt-4">
       <div class="row">
@@ -144,3 +143,10 @@ export default {
   }
 };
 </script>
+
+<style>
+  .action-buttons-bar {
+    background-color: white;
+    box-shadow: 0px 1px 6px 1px #676767;
+  }
+</style>

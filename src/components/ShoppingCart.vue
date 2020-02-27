@@ -60,14 +60,24 @@
     components: {
       ShoppingCartProductItem
     },
+    data() {
+      return {
+        isCartBusy: false
+      }
+    },
     methods: {
       closeSidebarPanel() {
         this.$store.dispatch('cart/toggleCartVisibility');
       },
       checkout() {
+        this.isCartBusy = true;
+
         this.$store.dispatch('cart/checkout')
-        .then(() => console.log('Checkout success'))
-        .catch((reason) => console.log(reason));
+        .then()
+        .catch((reason) => console.log(reason))
+        .finally(() => {
+          this.isCartBusy = false;
+        });
       }
     },
     computed: {
@@ -99,6 +109,7 @@
     top: 0;
     left: 0;
     cursor: pointer;
+    z-index: 2000; //High to override sticky navbar z-index
   }
 
   .cart-panel {
@@ -108,7 +119,7 @@
     top: 0;
     right: 0;
     height: 100vh;
-    z-index: 999;
+    z-index: 2005; //High to override sticky navbar z-index
     padding: 2rem 20px 2rem 20px;
     width: 100vw;
     display: flex;
