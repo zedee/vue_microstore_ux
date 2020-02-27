@@ -1,3 +1,34 @@
+# Vue Microstore UX
+
+## Pre requisites
+* This demo app needs to start a server (data source) and the client. I've integrated everything on same repo.
+* Before starting, make a copy of the file from `server_data/source/db.json` on the parent directory `server_data`.
+This will prevent CVS tracking of the database.
+* So in the command line (from project root directory) type:
+```
+$ cp server_data/source/db.json server_data/
+```
+
+## Installation
+Simply run:
+```
+$ npm install
+```
+
+## Run the app
+* To start data source server, type on a terminal:
+```
+$ npm run start-server
+```
+* To init the app, type on another terminal:
+```
+$ npm run serve
+```
+
+## Credits
+* This project has been created using [vue-2-boilerplate](https://github.com/petervmeijgaard/vue-2-boilerplate) from [@petervmeijgaard](https://github.com/petervmeijgaard). Thanks Peter!
+* vue-2-boilerplate readme is below.
+
 # vue-2-boilerplate
 > A boilerplate for building medium to large Vue 2 single page applications
 
