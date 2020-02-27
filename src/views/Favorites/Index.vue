@@ -8,14 +8,7 @@
       <div slot="body">
         <div class="row">
           <div class="col-6 col-xl-3 mb-4" v-for="product in favoriteList">
-            <product-item :id="product.id"
-                          :image_url="product.image_url"
-                          :price="product.price"
-                          :name="product.productName"
-                          :description="product.productDescription"
-                          :stock="product.stock"
-                          :favorite="product.favorite == true"
-            ></product-item>
+            <product-item :product="product"></product-item>
           </div>
         </div>
         <div slot="shopping-cart">

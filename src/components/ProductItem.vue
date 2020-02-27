@@ -3,38 +3,40 @@
     <span :class="'product-favorite h2 ' + isProductFavorite">
       <i class="fa fa-heart"></i>
     </span>
-    <v-lazy-image class="img-fluid img-card-top" :src="image_url" :alt="name" />
+    <v-lazy-image class="img-fluid img-card-top" :src="product.image_url" :alt="product.productName" />
     <div class="card-body">
       <div class="row my-md-3">
         <div class="col-12 col-md-9 col-lg-8 d-flex align-items-center">
-          <h1 class="h5 card-title mb-0 product-name"><strong>{{ name }}</strong></h1>
+          <h1 class="h5 card-title mb-0 product-name"><strong>{{ product.productName }}</strong></h1>
         </div>
         <div class="col-12 col-md-3 col-lg-4 mt-3 my-md-0">
-          <h2 class="h4 card-text d-lg-block text-left text-md-right product-price">{{ price }} €</h2>
+          <h2 class="h4 card-text d-lg-block text-left text-md-right product-price">{{ product.price }} €</h2>
         </div>
       </div>
       <b-card no-body class="mb-1 d-none d-md-block">
         <b-card-header header-tag="header" class="p-1" role="tab">
-          <b-button block href="#" v-b-toggle="'product-description-' + id" variant="info">Toggle description</b-button>
+          <b-button block href="#" v-b-toggle="'product-description-' + product.id" variant="info">Toggle description</b-button>
         </b-card-header>
-        <b-collapse :id="'product-description-' + id" accordion="product-description" role="tabpanel">
+        <b-collapse :id="'product-description-' + product.id" accordion="product-description" role="tabpanel">
           <b-card-body>
-            <b-card-text>{{ description }}</b-card-text>
+            <b-card-text>{{ product.productDescription }}</b-card-text>
           </b-card-body>
         </b-collapse>
       </b-card>
       <div class="row mt-4">
           <div class="col-12 col-md-8 d-none d-md-flex align-items-center">
-            <template v-if="stock > 0">
-              <span :class="stockColorInfo">{{ stock }} left</span>
+            <template v-if="product.stock > 0">
+              <span :class="stockColorInfo">{{ product.stock }} left</span>
             </template>
             <template v-else>
               <span class="badge badge-dark">Product out of stock</span>
             </template>
           </div>
           <div class="col-12 col-md-4 text-right">
-            <button class="btn btn-info btn-block" :disabled="!(stock > 0)"
-                    :data-product-id="id" @click="addProductToCart(id)">
+            <button class="btn btn-info btn-block"
+                    :disabled="!(product.stock > 0)"
+                    @click="addProductToCart(product)"
+            >
               + Add
             </button>
           </div>
@@ -52,39 +54,44 @@
      */
     name: 'ProductItem',
     props: {
-      id: {
-        default: '',
-        type: String
+      product: {
+        default: () => {
+          return {
+            id: {
+              default: '',
+              type: String
+            },
+            image_url: {
+              default: 'fallback_url',
+              type: String
+            },
+            price: {
+              default: 0.00,
+              type: Number
+            },
+            productName: {
+              default: 'Product Name',
+              type: String
+            },
+            productDescription: {
+              default: 'Description',
+              type: String
+            },
+            stock: {
+              default: 0,
+              type: Number
+            },
+            favorite: {
+              default: false,
+              type: Boolean
+            }
+          }
+        },
+        type: Object
       },
-      image_url: {
-        default: 'fallback_url',
-        type: String
-      },
-      price: {
-        default: 0.00,
-        type: Number
-      },
-      name: {
-        default: 'Product Name',
-        type: String
-      },
-      description: {
-        default: 'Description',
-        type: String
-      },
-      stock: {
-        default: 0,
-        type: Number
-      },
-      favorite: {
-        default: false,
-        type: Boolean
-      }
     },
     methods: {
-      addProductToCart(productID) {
-        const selectedProduct = _.find(this.$store.state.products.currentPageList, { 'id': productID });
-
+      addProductToCart(selectedProduct) {
         //Decrease Stock
         this.$store.dispatch('products/updateProductStock', {
           selectedProduct: selectedProduct,
@@ -93,23 +100,26 @@
         .then(() => //As we cannot add a product from other page, iterate only on current one.
           this.$store.dispatch('cart/addProduct', selectedProduct))
         .catch((reason) => console.log(reason));
+      },
+      addProductToFavorites(selectedProduct) {
+
       }
     },
     computed: {
       stockColorInfo() {
         let colorClass = 'text-dark';
 
-        if (this.stock < 5 && this.stock > 2) {
+        if (this.product.stock < 5 && this.product.stock > 2) {
           colorClass = 'badge badge-warning';
         }
-        else if (this.stock <= 2 ) {
+        else if (this.product.stock <= 2 ) {
           colorClass = 'badge badge-danger';
         }
 
         return colorClass;
       },
       isProductFavorite() {
-        return this.favorite ? 'text-danger' : 'text-light';
+        return this.product.favorite ? 'text-danger' : 'text-light';
       }
     }
   };
