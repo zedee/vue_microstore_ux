@@ -115,7 +115,7 @@
           selectedProduct: this.product,
           action: 'decrease'
         })
-        .then(() => this.$store.dispatch('cart/addProduct', this.product))
+        .then((result) => this.$store.dispatch('cart/addProduct', result))
         .catch((reason) => console.log(reason));
       },
       updateFavoriteStatus() {

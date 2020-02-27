@@ -9,13 +9,13 @@
 import { LIST } from './mutation-types';
 import { FAVORITE_LIST } from './mutation-types';
 import { SET_PAGE } from './mutation-types';
-import { UPDATE_PRODUCT_STOCK } from './mutation-types';
 import { REFRESH_PRODUCT_ACTIVE_PAGE } from "./mutation-types";
 import { UPDATE_PRODUCT_DATA } from "./mutation-types";
 
 /* eslint-disable no-param-reassign */
 export default {
   [LIST](state, payload) {
+    state.productRootList = payload;
     state.productList = payload;
     //Get total pages
     state.totalPages = Math.ceil(payload.length / state.itemsPerPage);
@@ -49,23 +49,12 @@ export default {
         break;
     }
   },
-  [UPDATE_PRODUCT_STOCK](state, payload) {
-    //Update product stock on main product list
-    const productToUpdateIndex = _.findIndex(state.productList, { id: payload.selectedProduct.id });
-
-    if (payload.action === 'increase') {
-      state.productList[productToUpdateIndex].stock++;
-    }
-    else {
-      if (state.productList[productToUpdateIndex].stock >= 0) {
-        state.productList[productToUpdateIndex].stock--;
-      }
-    }
-  },
   [UPDATE_PRODUCT_DATA](state, payload) {
-    const productToUpdateIndex = _.findIndex(state.productList, { id: payload.id });
+    const productToUpdateIndex = _.findIndex(state.productRootList, { id: payload.id });
+    state.productRootList[productToUpdateIndex] = payload;
 
-    state.productList[productToUpdateIndex] = payload;
+    const productToUpdateToActiveListIndex = _.findIndex(state.productList, { id: payload.id });
+    state.productList[productToUpdateToActiveListIndex] = payload;
   },
   [REFRESH_PRODUCT_ACTIVE_PAGE](state) {
     //Refresh currentPageList

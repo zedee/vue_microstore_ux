@@ -8,7 +8,6 @@
 
 import * as types from './mutation-types';
 import ProductProxy from '../../../proxies/ProductProxy';
-import _ from 'lodash';
 
 export const addProduct = ({ commit }, payload) => {
   if (payload) {
@@ -32,7 +31,7 @@ export const toggleCartVisibility = ({ commit }) => {
 };
 
 export const checkout = ({ commit, state }) => {
-  //TODO: Consolidate stocks on backend, clear cart and trigger product reload
+  //TODO: Here stocks should be consolidated on backend.
 };
 
 export default {

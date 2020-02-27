@@ -12,29 +12,30 @@ import { SET_PRODUCT_QUANTITY } from './mutation-types';
 import { TOGGLE_CART_VISIBILITY } from './mutation-types';
 import { RESET } from './mutation-types';
 
-import _ from 'lodash';
-
 /* eslint-disable no-param-reassign */
 export default {
   [ADD_PRODUCT](state, selectedProduct) {
     //Push article into cart if we don't have any, otherwise increase item qty
     if (!_.some(state.cartContent, { id: selectedProduct.id } )) {
-      state.cartContent.push({
-        id: selectedProduct.id,
-        name: selectedProduct.productName,
-        image_url: selectedProduct.image_url,
-        price: selectedProduct.price,
-        quantity: 1
-      });
+      selectedProduct.quantity = 1;
+      state.cartContent.push(selectedProduct);
     }
     else {
       const currentProductIndex = _.findIndex(state.cartContent, { id: selectedProduct.id });
-      state.cartContent[currentProductIndex].quantity++;
+      //Force reactivity
+      let updateObject = Object.assign({},  state.cartContent[currentProductIndex], {
+        quantity: state.cartContent[currentProductIndex].quantity + 1 }
+        );
+      state.cartContent.splice(currentProductIndex, 1, updateObject);
     }
   },
   [REMOVE_PRODUCT](state, selectedProduct) {
     const currentProductIndex = _.findIndex(state.cartContent, { id: selectedProduct.id });
-    state.cartContent[currentProductIndex].quantity--;
+    //Force reactivity
+    let updateObject = Object.assign({},  state.cartContent[currentProductIndex], {
+      quantity: state.cartContent[currentProductIndex].quantity - 1 }
+    );
+    state.cartContent.splice(currentProductIndex, 1, updateObject);
 
     if (state.cartContent[currentProductIndex].quantity === 0) {
       state.cartContent.splice(currentProductIndex, 1);

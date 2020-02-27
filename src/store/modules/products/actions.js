@@ -47,15 +47,30 @@ export const prevPage = ({ commit }) => {
 
 export const updateProductStock = ({ commit, state }, payload) => {
   return new Promise((resolve, reject) => {
-    const productToUpdateIndex = _.findIndex(state.productList, { id: payload.selectedProduct.id });
+    const productToUpdate = _.find(state.productRootList, { id: payload.selectedProduct.id });
+    let finalStockToUpdate;
 
-    if (state.productList[productToUpdateIndex].stock > 0 || payload.action === 'increase') {
-      commit(types.UPDATE_PRODUCT_STOCK, payload);
-      commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
-      resolve()
+    if (payload.action === 'increase') {
+      finalStockToUpdate = productToUpdate.stock + 1;
     }
     else {
-      reject('No more items on stock')
+      finalStockToUpdate = productToUpdate.stock - 1;
+    }
+
+    if (productToUpdate.stock > 0 || payload.action === 'increase') {
+      new ProductProxy()
+        .updateProduct(productToUpdate.id, { stock: finalStockToUpdate })
+        .then((response) => {
+          commit(types.UPDATE_PRODUCT_DATA, response);
+          commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
+          resolve(response);
+        })
+        .catch(() => {
+          reject('Stock update request Failed');
+        });
+    }
+    else {
+      reject('No more product stock');
     }
   });
 };

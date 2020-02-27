@@ -6,6 +6,7 @@
  */
 
 export default {
+  productRootList: [],
   productList: [],
   currentPageList: [],
   currentPage: 0,

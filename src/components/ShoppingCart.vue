@@ -15,13 +15,7 @@
             <main class="cart-product-items-container">
               <ul class="list-unstyled">
                 <li v-for="cartItem in cartItems" :key="cartItem.id">
-                  <ShoppingCartProductItem
-                    :id="cartItem.id"
-                    :image_url="cartItem.image_url"
-                    :price="cartItem.price"
-                    :name="cartItem.name"
-                    :quantity="cartItem.quantity"
-                  ></ShoppingCartProductItem>
+                  <ShoppingCartProductItem :cartItem="cartItem"></ShoppingCartProductItem>
                 </li>
               </ul>
             </main>
@@ -40,8 +34,7 @@
                 <hr>
                 <button v-if="cartItems.length"
                         class="btn btn-success btn-block py-3 mt-4 mb-1"
-                        @click="checkout"
-                >
+                        @click="checkout">
                   Checkout
                 </button>
               </div>
@@ -73,7 +66,10 @@
         this.isCartBusy = true;
 
         this.$store.dispatch('cart/checkout')
-        .then()
+        .then(() => {
+          //Reload product list so real stocks from server are updated
+          this.$store.dispatch('products/list')
+        })
         .catch((reason) => console.log(reason))
         .finally(() => {
           this.isCartBusy = false;
@@ -84,6 +80,9 @@
       isPanelOpen() { return this.$store.state.cart.isVisible },
       cartItems() { return this.$store.state.cart.cartContent },
       cartTotalPrice() { return this.$store.getters['cart/itemsTotalSum'] },
+    },
+    watch: {
+
     }
   }
 </script>
