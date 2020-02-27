@@ -60,8 +60,23 @@ export const updateProductStock = ({ commit, state }, payload) => {
   });
 };
 
-export const updateProductFavorite = ({ commit, state }, payload) => {
+export const updateProductFavorite = ({ commit, state }, selectedProduct) => {
+  return new Promise((resolve, reject) => {
+      const updateValueObject = {
+        favorite: selectedProduct.favorite ? 0 : 1
+      };
 
+      new ProductProxy()
+        .updateProduct(selectedProduct.id, updateValueObject)
+        .then((response) => {
+          commit(types.UPDATE_PRODUCT_DATA, response);
+          commit(types.REFRESH_PRODUCT_ACTIVE_PAGE);
+          resolve(response);
+        })
+        .catch(() => {
+          reject('Request Failed');
+        });
+    });
 };
 
 export default {

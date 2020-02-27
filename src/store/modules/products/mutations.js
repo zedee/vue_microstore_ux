@@ -11,6 +11,7 @@ import { FAVORITE_LIST } from './mutation-types';
 import { SET_PAGE } from './mutation-types';
 import { UPDATE_PRODUCT_STOCK } from './mutation-types';
 import { REFRESH_PRODUCT_ACTIVE_PAGE } from "./mutation-types";
+import { UPDATE_PRODUCT_DATA } from "./mutation-types";
 
 /* eslint-disable no-param-reassign */
 export default {
@@ -60,6 +61,11 @@ export default {
         state.productList[productToUpdateIndex].stock--;
       }
     }
+  },
+  [UPDATE_PRODUCT_DATA](state, payload) {
+    const productToUpdateIndex = _.findIndex(state.productList, { id: payload.id });
+
+    state.productList[productToUpdateIndex] = payload;
   },
   [REFRESH_PRODUCT_ACTIVE_PAGE](state) {
     //Refresh currentPageList
