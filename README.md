@@ -1,13 +1,40 @@
 # Vue Microstore UX
+* This demo app needs to start a server (data source) and the client. I've integrated everything on same repo.
 
 ## Pre requisites
-* This demo app needs to start a server (data source) and the client. I've integrated everything on same repo.
+* NodeJS + NPM
+
+## Installation previous steps
 * Before starting, make a copy of the file from `server_data/source/db.json` on the parent directory `server_data`.
-This will prevent CVS tracking of the database.
+This will prevent CVS (version control) tracking of the dummy database and bug you with staged changes at each commit.
 * So in the command line (from project root directory) type:
 ```
 $ cp server_data/source/db.json server_data/
 ```
+
+* Once that is done, you must copy the file `.env.example` into a `.env` file.
+```
+$ cp .env.example .env
+```
+
+* Then edit that `.env` file and add there the base URL of the API (without endpoints):
+
+Example for this particular repo:
+```dotenv
+VUE_APP_API_LOCATION=http://localhost:3000
+VUE_APP_API_CLIENT_ID=
+VUE_APP_API_CLIENT_SECRET==
+```
+
+Example for this app in staging or production:
+```dotenv
+VUE_APP_API_LOCATION=http://server.example.org/api/v1/
+VUE_APP_API_CLIENT_ID=1234567890ABCD
+VUE_APP_API_CLIENT_SECRET=ALONGRANDOMISHSTRING=
+```
+
+* The `.env` file **must not** be included into the repository (it's already on `.gitignore`), as it is exclusive for a particular environment.
+Keep your keys and secrets out of the version control!
 
 ## Installation
 Simply run:
