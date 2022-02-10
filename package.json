@@ -15,7 +15,7 @@
     "bootstrap-vue": "^2.5.0",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.15",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "register-service-worker": "^1.0.0",
     "sass-loader": "^8.0.2",
     "v-lazy-image": "^1.4.0",
